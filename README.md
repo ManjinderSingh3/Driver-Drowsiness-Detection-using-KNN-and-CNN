@@ -1,8 +1,13 @@
 # Driver Drowsiness Detection 😴
 A comparative analysis of Classification models (K-Nearest Neighbors and Convolutional Neural Network) is performed in order to classify the drowsiness of a driver. 
 Features like Eye Aspect Ratio, Mouth Aspect Ratio, Pupil Circularity and Mouth Aspect Ratio over Eye Aspect Ratio were taken into consideration. This project lies in Classification domain of Machine Learning. 
+This project is Divided into 3 parts:
+1. Data Collection and Feature Extraction
+2. Build K-Nearest Neighbor and Convolutional Neural Network Model.
+3. Compare both the models based on different Evaluation Metrics like Accuracy Precision, Recall, and F1_Score. 
 
 A study conducted by AAA Foundation for Traffic Safety estimated that 328000 crashes occured annually due to drowsy driving. Among them, over 58% of the injuries are of pedestrians as the drowsy driver lose control and hit them.
+
 
 # Dataset 📊
 ### The dataset used in this project can be accessed [here](https://sites.google.com/view/utarldd/home) 
@@ -12,7 +17,6 @@ A study conducted by AAA Foundation for Traffic Safety estimated that 328000 cra
 - 5 means transition from awake state to slightly drowsy state.
 - 10 means person is feeling drowsy.
 
-__Note:__ AMong these 3 labels (0,5,10) I have only kept 0 and 10 labels as it is a Binary Classification problem.
 
 # Project Flow 🔗
 - First, frames are extracted from video dataset at a rate of one frame per second.
@@ -36,12 +40,67 @@ __Conclusion:__ MOE increases (MAR increases and EAR decreases) – Drowsiness i
 
 # Facial Region Index for Key Features
 As discussed above we have 68 facial landmarks. AMong them, we are only concerned about eye and mouth. Below mentioned table shows the Index values of these features.
-1[image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/2.png)
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/2.png)
 
-# Classification ALgorithms
-## 1. K-Nearest Neighbors
+Normalization
+
+# 2. Classification Models
+## a. K-Nearest Neighbors
 - The dataset used to build KNN model has 17,280 rows and 10 columns.
 - 80% of the data is used for trainging and 20% for testing the model.
-- In order to choose best value of K, I have used elbow method to find optimal value.
+- In order to choose best value of K, I have used **Elbow method** to find optimal value.
 - Scikit-learn library is used to build the model.
 - Confusion matrix and Classification report are used to evaluate model performance.
+
+__Note:__ Among three labels(0,5,10), I have only kept 0 and 10.
+
+## b. Convolutional Neural Network
+
+  ### i. Architecture of CNN
+  - The Convolutional Neural Network has 2 convolution layers. The first layer has 3 inputs nodes and 10 output nodes with a kernel size of 3 and stride as 1. 
+  - The second convolution layer has 10 input and 20 output nodes with the same kernel and stride size. 
+  - A Batch normalization layer is added next to regularize the network while training. 
+  - A Dropout layer with a dropout percentage of 20% is added to prevent the overfitting of the model. 
+  - They are then fed into a single layer feed back network which is again fed into a batch normalization layer. 
+  - Another single layer feed back network is used again. 
+  - During each forward the tensor will be fed to the forward function where the Maxpooling and flattering is done. 
+  - The final output layer uses the softmax function which will give the probability that the given input belongs to class 0(Alert) or Class 1 (Drowsy).
+
+  **Hyperparameters: **
+  - Learning rate - 0.001 
+  - Number of epochs - 9
+  - Activation Function - ReLU
+  - Loss function - Cross Entropy Loss function 
+  - Optimizer - Stochastic Gradient Descent.
+  
+  ### ii. Training Vs Testing Loss of CNN
+  
+  ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/7.png)
+  From the above figure we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch values of 5 and 8 we have least validation loss. Although, error is not that significant at the initial values of epochs, still we have trained our model for 9 iterations just to prevent the problem of overfitting.
+
+
+# 3. Comparative Analysis of Classification Models
+- K-Nearest Neighbor gives an accuracy of 83%.
+- Convolutional Neural Network gives an accuracy of 99.84%.
+- The error rate in Convolutional Neural Network is almost negligible.
+- Additional features like **Mouth Aspect Ratio**, **Pupil Circularity**, and **Mouth Aspect Ratio over Eye Aspect Ratio** helped in getting higher accuracy. Most other studies only consider eye aspect ratio.
+
+# How to run code locally 🛠️
+- Before following below mentioned steps please make sure you have [git](https://git-scm.com/download), [Anaconda](https://www.anaconda.com/) installed on your system.
+- Clone the complete project with  `git clone https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN.git` or you can just download the code and unzip it.
+- Create a Pytorch Environment in Anaconda.
+- Download the dataset from [here](https://sites.google.com/view/utarldd/home) 
+
+
+# Future Scope
+The future work is a real time monitoring system.
+- Scope of integrating this code into a mobile application. 
+- As almost all the vehicle have a dashcam now, we can use them to capture the video.
+- Mobile application will have acces to videos captured by dashcam. 
+- Once videos are received in application than feature extraction will be performed.  
+- Extracted features will be passed to the highest accurate model. Based on the results of the model, application will notify the driver
+- If it founds that driver is drowsy than Mobile Application will start beeping an Alarm to notify the driver and prevent accident.
+
+# Contact 📞
+
+#### If you have any doubt or want to contribute to this project feel free to email me or drop your message on [LinkedIn](https://www.linkedin.com/in/manjinder-singh-a23aa3149/)
