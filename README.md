@@ -12,30 +12,31 @@ A study conducted by AAA Foundation for Traffic Safety estimated that 328000 cra
 - 5 means transition from awake state to slightly drowsy state.
 - 10 means person is feeling drowsy.
 
-_Note:_ AMong these 3 labels (0,5,10) I have only kept 0 and 10 labels as it is a Binary Classification problem.
+__Note:__ AMong these 3 labels (0,5,10) I have only kept 0 and 10 labels as it is a Binary Classification problem.
 
 # Project Flow 🔗
 - First, frames are extracted from video dataset at a rate of one frame per second.
 - Facial features are extracted from these frames using mlxtend and DLib library. There are around 68 facial landmarks, however, we are only interested in landmarks for the eyes and mouth. 
 - The aspect ratio of mouth and eye, along with mouth over eye ratio, is calculated from eye and mouth features for each frame. 
 - These features are then fed into VGG-16 and KNN model.
-
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/1.png)
 
 # Prominent Features 🔑
 ## a. Eye Aspect Ratio (EAR)
-The ratio of length and width of eyes is termed as Eye Aspect Ratio. During the drowsiness phase, eyes get smaller, and the person blinks them often, which reduces EAR. If this feature keeps on decreasing during subsequent frames of video, then our model will classify that person in a drowsy class.
-_Conclusion:_ EAR decreases – Drowsiness increases
+The ratio of length and width of eyes is termed as Eye Aspect Ratio. During the drowsiness phase, eyes get smaller, and the person blinks them often, which reduces EAR. If this feature keeps on decreasing during subsequent frames of video, then our model will classify that person in a drowsy class.  
+__Conclusion:__ EAR decreases – Drowsiness increases
 ## b. Mouth Aspect Ratio (MAR)
-The ratio of length and width of the mouth is termed as Mouth Aspect Ratio. When a person feels drowsy, they tend to yawn more, which increases MAR from the normal condition.
-_Conclusion:_ MAR increases – Drowsiness increases
+The ratio of length and width of the mouth is termed as Mouth Aspect Ratio. When a person feels drowsy, they tend to yawn more, which increases MAR from the normal condition.  
+__Conclusion:__ MAR increases – Drowsiness increases
 ## c. Pupil Circularity (PUC)
 This feature emphasis more on the pupil instead of the entire eye. People who feel drowsy will have their half eyes open which will reduce their Pupil Circularity.
 ## d. Mouth Aspect Ratio over Eye Aspect Ratio (MOE)
-As discussed above EAR and MAR are inversely proportional. MAR comes in numerator and EAR comes in the denominator.
-_Conclusion:_ MOE increases (MAR increases and EAR decreases) – Drowsiness increases
+As discussed above EAR and MAR are inversely proportional. MAR comes in numerator and EAR comes in the denominator.  
+__Conclusion:__ MOE increases (MAR increases and EAR decreases) – Drowsiness increases
 
 # Facial Region Index for Key Features
 As discussed above we have 68 facial landmarks. AMong them, we are only concerned about eye and mouth. Below mentioned table shows the Index values of these features.
+1[image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/2.png)
 
 # Classification ALgorithms
 ## 1. K-Nearest Neighbors
