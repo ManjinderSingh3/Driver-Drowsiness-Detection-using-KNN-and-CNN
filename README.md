@@ -74,15 +74,15 @@ __Note:__ Among three labels(0,5,10), I have only kept 0 and 10.
   - Optimizer - Stochastic Gradient Descent.
   
   ### ii. Performance Evaluation and Results
-  &nbsp   
+  &nbsp;   
   **a.Graph showing Training Vs Testing Loss**
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/7.png)
   From the above figure, we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch value of 5 and 8 we have least validation loss.   
-  &nbsp   
+  &nbsp;   
   **b.Training,Testing Loss and Accuracy**
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/8.png)
   From the above figure, it is evident that error is not much significant at the initial values of epochs, however, I have trained the model for 9 iterations just to prevent the problem of overfitting.  
-  &nbsp   
+  &nbsp;    
   **c.Testing the Model on sample Images**
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/9.png)
   In the above figure, first row has original images along with their labels, whereas second row comprises of test results of CNN. We can see that model has correctly predicted/classified all the images.
