@@ -121,7 +121,13 @@ I have used PyTorch Framework to build CNN. Several modules of PyTorch framework
 - Before following below mentioned steps please make sure you have [git](https://git-scm.com/download), [Anaconda](https://www.anaconda.com/) installed on your system.
 - Clone the complete project with  `git clone https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN.git` or you can just download the code and unzip it.
 - Create a Pytorch Environment in Anaconda.
-- Download the dataset from [here](https://sites.google.com/view/utarldd/home) 
+- Download the dataset from [here](https://sites.google.com/view/utarldd/home)
+- Perform Feature Extraction by following `Feature_Extraction.ipynb` file.
+- Frames extracted from videos are saved in `img` folder.
+- KNN_Dataset folder has final `normalized_data.csv` file which is used to build KNN Model.
+- Follow `K-Nearest Neighbors.ipynb` file to build KNN model.
+- As there were huge number of images of training CNN Model so CNN_Dataset folder is currently empty.  
+- To build CNN Model follw `Convolutional Neural Network.ipynb` file.
 
 
 # Future Scope
