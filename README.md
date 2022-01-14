@@ -126,7 +126,7 @@ I have used PyTorch Framework to build CNN. Several modules of PyTorch framework
 - Frames extracted from videos are saved in `img` folder.
 - KNN_Dataset folder has final `normalized_data.csv` file which is used to build KNN Model.
 - Follow `K-Nearest Neighbors.ipynb` file to build KNN model.
-- As there were huge number of images of training CNN Model so CNN_Dataset folder is currently empty.  
+- As there were huge number of images of training CNN Model so CNN_Dataset folder is currently empty as Gihub allows maximum file size to be 100 Mb. Also Git-lfs has limit of 5 Gb data per month in free trial. 
 - To build CNN Model follw `Convolutional Neural Network.ipynb` file.
 
 
