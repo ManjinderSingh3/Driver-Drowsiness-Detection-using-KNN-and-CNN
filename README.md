@@ -45,17 +45,25 @@ As discussed above, we have total 68 facial landmarks. Among them, we are only c
 Normalization
 
 # 2. Classification Models
-## a. K-Nearest Neighbors
+## a. K-Nearest Neighbour
 - The dataset used to build KNN model has 17,280 rows and 10 columns.
 - 80% of the data is used for trainging and 20% for testing the model.
-- In order to choose best value of K, I have used **Elbow method** to find optimal value.
+- **Elbow method** was used to find best value for K.
 - Scikit-learn library is used to build the model.
 - Confusion matrix and Classification report are used to evaluate model performance.
 
-__Note:__ Among three labels(0,5,10), I have only kept 0 and 10.
+__Note:__ Among three labels i.e, (0,5,10), I have only kept 0 and 10 for building KNN.
+
+### Results
+#### i. Elbow method to find best value of K
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/6.png)
+From the above figure, we can see that at K=5, we get a minimum error rate and high accuracy. So value of K is choosen as 5 in the model.
+
+#### ii. Confusion Matrix and Classification Report
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/5.png)
 
 ## b. Convolutional Neural Network
-
+I have used PyTorch Framework to build CNN. Several modules of PyTorch frameworks have been used. `torchvision.transforms` library is used for image transformation. `DataLoader` is used as an iterable object over the dataset. 
   ### i. Architecture of CNN
   - The Convolutional Neural Network has 2 convolution layers. The first layer has 3 inputs nodes and 10 output nodes with a kernel size of 3 and stride as 1. 
   - The second convolution layer has 10 input and 20 output nodes with the same kernel and stride size. 
@@ -73,8 +81,7 @@ __Note:__ Among three labels(0,5,10), I have only kept 0 and 10.
   - Loss function - Cross Entropy Loss function 
   - Optimizer - Stochastic Gradient Descent.
   
-  ### ii. Performance Evaluation and Results
-  &nbsp;   
+  ### ii. Performance Evaluation and Results   
   #### a.Graph showing Training Vs Testing Loss
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/7.png)
   From the above figure, we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch value of 5 and 8 we have least validation loss.   
