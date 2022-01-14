@@ -25,7 +25,7 @@ A study conducted by AAA Foundation for Traffic Safety estimated that 328000 cra
 - These features are then fed into VGG-16 and KNN model.
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/1.png)
 
-# 1.Feature Extraction
+# 1. Feature Extraction 
 Each video present in the dataset is 10 minutes long and there are total 60 participants. In total there are 30 hours long different videos of different participants. Further, all the 60 participants were randomly divided into five folds of 12 participants, for the purpose of **K-Fold Cross Validation**.
 There are around 68 facial landmarks/ facial points, however, we only extracted features of eyes and mouth region.   
 
@@ -34,20 +34,21 @@ Below mentioned are prominent features which were evaluated from each photo/fram
 **Dlib** library was used to extract facial features.
 
 ## a. Prominent Features 🔑
-### i. Eye Aspect Ratio (EAR)
+### i. Eye Aspect Ratio (EAR) 👀
 The ratio of length and width of eyes is termed as Eye Aspect Ratio. During the drowsiness phase, eyes get smaller, and the person blinks them often, which reduces EAR. If this feature keeps on decreasing during subsequent frames of video, then our model will classify that person in a drowsy class.  
 __Conclusion:__ EAR decreases – Drowsiness increases
 ### ii. Mouth Aspect Ratio (MAR)
 The ratio of length and width of the mouth is termed as Mouth Aspect Ratio. When a person feels drowsy, they tend to yawn more, which increases MAR from the normal condition.  
 __Conclusion:__ MAR increases – Drowsiness increases
-### iii. Pupil Circularity (PUC)
+### iii. Pupil Circularity (PUC)👁
 This feature emphasis more on the pupil instead of the entire eye. People who feel drowsy will have their half eyes open which will reduce their Pupil Circularity.
 ### iv. Mouth Aspect Ratio over Eye Aspect Ratio (MOE)
 As discussed above EAR and MAR are inversely proportional. MAR comes in numerator and EAR comes in the denominator.  
 __Conclusion:__ MOE increases (MAR increases and EAR decreases) – Drowsiness increases
 
-## b. Facial Region Index for Key Features
+## b. Facial Region Index for Key Features 😵
 As discussed above, we have total 68 facial landmarks. Among them, we are only concerned about eye and mouth region. Below mentioned table shows the Index values of these facial regions.
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/11.png)
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/2.png)
 
 ### c. DataFrame after extracting above mentioned features
@@ -61,7 +62,7 @@ If someone has naturally small eyes, then EAR (Eye Aspect Ratio) will decrease, 
 ### f. Feature Importance
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/4.png)
 
-# 2. Classification Models
+# 2. Classification Models 
 ## a. K-Nearest Neighbour
 - The dataset used to build KNN model has 17,280 rows and 10 columns.
 - 80% of the data is used for trainging and 20% for testing the model.
@@ -79,9 +80,9 @@ From the above figure, we can see that at K=5,6,7,and 8 we get a minimum error r
 #### ii. Confusion Matrix and Classification Report
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/5.png)
 
-## b. Convolutional Neural Network
+## b. Convolutional Neural Network 
 I have used PyTorch Framework to build CNN. Several modules of PyTorch frameworks have been used. `torchvision.transforms` library is used for image transformation. `DataLoader` is used as an iterable object over the dataset. 
-  ### i. Architecture of CNN
+  ### i. Architecture of CNN 
   - The Convolutional Neural Network has 2 convolution layers. The first layer has 3 inputs nodes and 10 output nodes with a kernel size of 3 and stride as 1. 
   - The second convolution layer has 10 input and 20 output nodes with the same kernel and stride size. 
   - A Batch normalization layer is added next to regularize the network while training. 
@@ -98,7 +99,7 @@ I have used PyTorch Framework to build CNN. Several modules of PyTorch framework
   - Loss function - Cross Entropy Loss function 
   - Optimizer - Stochastic Gradient Descent.
   
-  ### ii. Performance Evaluation and Results   
+  ### ii. Performance Evaluation and Results ✅
   #### a. Graph showing Training Vs Testing Loss
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/7.png)
   From the above figure, we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch value of 5 and 8 we have least validation loss.   
@@ -130,7 +131,7 @@ I have used PyTorch Framework to build CNN. Several modules of PyTorch framework
 - To build CNN Model follw `Convolutional Neural Network.ipynb` file.
 
 
-# Future Scope
+# Future Scope 🏆
 The future work is a real time monitoring system.
 - Scope of integrating this code into a mobile application. 
 - As almost all the vehicle have a dashcam now, we can use them to capture the video.
