@@ -20,29 +20,46 @@ A study conducted by AAA Foundation for Traffic Safety estimated that 328000 cra
 
 # Project Flow 🔗
 - First, frames are extracted from video dataset at a rate of one frame per second.
-- Facial features are extracted from these frames using mlxtend and DLib library. There are around 68 facial landmarks, however, we are only interested in landmarks for the eyes and mouth. 
+- Facial features are extracted from these frames using mlxtend and DLib library. 
 - The aspect ratio of mouth and eye, along with mouth over eye ratio, is calculated from eye and mouth features for each frame. 
 - These features are then fed into VGG-16 and KNN model.
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/1.png)
 
-# Prominent Features 🔑
-## a. Eye Aspect Ratio (EAR)
+# 1.Feature Extraction
+Each video present in the dataset is 10 minutes long and there are total 60 participants. In total there are 30 hours long different videos of different participants. Further, all the 60 participants were randomly divided into five folds of 12 participants, for the purpose of **K-Fold Cross Validation**.
+There are around 68 facial landmarks/ facial points, however, we only extracted features of eyes and mouth region.   
+
+Frames were not extracted for first 3 minutes from each video, because, it is the tendancy of human to get distracted in the beginning phase. So to extract meaningful data first 3 minutes from each video were ignored. From 3rd minute onwards 1 frame per second was extracted with the maximum 240 frames per video.  
+Below mentioned are prominent features which were evaluated from each photo/frame.  
+**Dlib** library was used to extract facial features.
+
+## a. Prominent Features 🔑
+### i. Eye Aspect Ratio (EAR)
 The ratio of length and width of eyes is termed as Eye Aspect Ratio. During the drowsiness phase, eyes get smaller, and the person blinks them often, which reduces EAR. If this feature keeps on decreasing during subsequent frames of video, then our model will classify that person in a drowsy class.  
 __Conclusion:__ EAR decreases – Drowsiness increases
-## b. Mouth Aspect Ratio (MAR)
+### ii. Mouth Aspect Ratio (MAR)
 The ratio of length and width of the mouth is termed as Mouth Aspect Ratio. When a person feels drowsy, they tend to yawn more, which increases MAR from the normal condition.  
 __Conclusion:__ MAR increases – Drowsiness increases
-## c. Pupil Circularity (PUC)
+### iii. Pupil Circularity (PUC)
 This feature emphasis more on the pupil instead of the entire eye. People who feel drowsy will have their half eyes open which will reduce their Pupil Circularity.
-## d. Mouth Aspect Ratio over Eye Aspect Ratio (MOE)
+### iv. Mouth Aspect Ratio over Eye Aspect Ratio (MOE)
 As discussed above EAR and MAR are inversely proportional. MAR comes in numerator and EAR comes in the denominator.  
 __Conclusion:__ MOE increases (MAR increases and EAR decreases) – Drowsiness increases
 
-# Facial Region Index for Key Features
+## b. Facial Region Index for Key Features
 As discussed above, we have total 68 facial landmarks. Among them, we are only concerned about eye and mouth region. Below mentioned table shows the Index values of these facial regions.
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/2.png)
 
-Normalization
+### c. DataFrame after extracting above mentioned features
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/21.png)
+
+If someone has naturally small eyes, then EAR (Eye Aspect Ratio) will decrease, which will lead our model to classify as a drowsy state. Although that person is alert, our model will fail in that case. To overcome such scenarios, I have performed Standardization for each column/ feature. 
+
+### d. Standardized Dataframe
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/3.png)
+
+### f. Feature Importance
+![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/4.png)
 
 # 2. Classification Models
 ## a. K-Nearest Neighbour
@@ -57,7 +74,7 @@ __Note:__ Among three labels i.e, (0,5,10), I have only kept 0 and 10 for buildi
 ### Results
 #### i. Elbow method to find best value of K
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/6.png)
-From the above figure, we can see that at K=5, we get a minimum error rate and high accuracy. So value of K is choosen as 5 in the model.
+From the above figure, we can see that at K=5,6,7,and 8 we get a minimum error rate and high accuracy. Since, K=5,6,7,8 shows approx same results, I choose the minimum k value i.e, 5.
 
 #### ii. Confusion Matrix and Classification Report
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/5.png)
@@ -82,15 +99,15 @@ I have used PyTorch Framework to build CNN. Several modules of PyTorch framework
   - Optimizer - Stochastic Gradient Descent.
   
   ### ii. Performance Evaluation and Results   
-  #### a.Graph showing Training Vs Testing Loss
+  #### a. Graph showing Training Vs Testing Loss
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/7.png)
   From the above figure, we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch value of 5 and 8 we have least validation loss.   
   &nbsp;   
-  #### b.Training,Testing Loss and Accuracy 
+  #### b. Training,Testing Loss and Accuracy 
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/8.png)
   From the above figure, it is evident that error is not much significant at the initial values of epochs, however, I have trained the model for 9 iterations just to prevent the problem of overfitting.  
   &nbsp;    
-  #### c.Testing the Model on sample Images
+  #### c. Testing the Model on sample Images
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/9.png)
   In the above figure, first row has original images along with their labels, whereas second row comprises of test results of CNN. We can see that model has correctly predicted/classified all the images.
 
