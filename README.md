@@ -39,7 +39,7 @@ As discussed above EAR and MAR are inversely proportional. MAR comes in numerato
 __Conclusion:__ MOE increases (MAR increases and EAR decreases) – Drowsiness increases
 
 # Facial Region Index for Key Features
-As discussed above we have 68 facial landmarks. AMong them, we are only concerned about eye and mouth. Below mentioned table shows the Index values of these features.
+As discussed above, we have total 68 facial landmarks. Among them, we are only concerned about eye and mouth region. Below mentioned table shows the Index values of these facial regions.
 ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/2.png)
 
 Normalization
@@ -66,18 +66,24 @@ __Note:__ Among three labels(0,5,10), I have only kept 0 and 10.
   - During each forward the tensor will be fed to the forward function where the Maxpooling and flattering is done. 
   - The final output layer uses the softmax function which will give the probability that the given input belongs to class 0(Alert) or Class 1 (Drowsy).
 
-  **Hyperparameters: **
+  **Hyperparameters:**
   - Learning rate - 0.001 
   - Number of epochs - 9
   - Activation Function - ReLU
   - Loss function - Cross Entropy Loss function 
   - Optimizer - Stochastic Gradient Descent.
   
-  ### ii. Training Vs Testing Loss of CNN
+  ### ii. Performance Evaluation and Results
   
+  **a.Grapgh showing Training Vs Testing Loss**
   ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/7.png)
-  From the above figure we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch values of 5 and 8 we have least validation loss. Although, error is not that significant at the initial values of epochs, still we have trained our model for 9 iterations just to prevent the problem of overfitting.
-
+  From the above figure, we can see that Validation/ Test loss is decreasing as we are increasing the number of epochs. At epoch value of 5 and 8 we have least validation loss. 
+  **b.Traing,Testing Loss and Accuracy**
+  ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/8.png)
+  From the above figure, it is evident that error is not much significant at the initial values of epochs, however, I have trained the model for 9 iterations just to prevent the problem of overfitting.
+  **c.Testing the Model on sample images**
+  ![image](https://github.com/ManjinderSingh3/Driver-Drowsiness-Detection-using-KNN-and-CNN/blob/main/outputs/9.png)
+  In the above figure, first row has original images along with their labels, whereas second row comprises of test results of CNN. We can see that model has correctly predicted/classified all the images.
 
 # 3. Comparative Analysis of Classification Models
 - K-Nearest Neighbor gives an accuracy of 83%.
