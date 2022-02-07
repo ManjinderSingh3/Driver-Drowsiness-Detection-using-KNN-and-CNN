@@ -70,7 +70,7 @@ If someone has naturally small eyes, then EAR (Eye Aspect Ratio) will decrease, 
 - Scikit-learn library is used to build the model.
 - Confusion matrix and Classification report are used to evaluate model performance.
 
-__Note:__ Among three labels i.e, (0,5,10), I have only kept 0 and 10 for building KNN.
+__Note:__ Among three labels i.e, (0,5,10), I have only kept 0 and 10 for building KNN as it is a binary classification problem.
 
 ### Results
 #### i. Elbow method to find best value of K
